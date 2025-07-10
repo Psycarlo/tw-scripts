@@ -1,0 +1,20 @@
+{
+  "name": "tw-scripts",
+  "version": "1.0.0",
+  "description": "⚔️ Tribal Wars Scripts by Psycarlo",
+  "scripts": {
+    "build": "tsc",
+    "check": "tsc --noEmit"
+  },
+  "keywords": [
+    "tribalwars",
+    "tribos"
+  ],
+  "author": "psycarlo",
+  "license": "MIT",
+  "packageManager": "pnpm@10.6.2",
+  "devDependencies": {
+    "@biomejs/biome": "2.1.1",
+    "typescript": "^5.8.3"
+  }
+}
