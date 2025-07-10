@@ -12,8 +12,18 @@
 const REFRESH_RATE = 3500
 const delay = (ms: number) => new Promise((res) => setTimeout(res, ms))
 
+async function awaitAndReload() {
+	await delay(REFRESH_RATE)
+	window.location.reload()
+}
+
 ;(async () => {
 	const buttons = document.querySelectorAll('.btn-instant-free')
+	if (buttons.length === 0) {
+		await awaitAndReload()
+		return
+	}
+
 	const style = window.getComputedStyle(buttons[0])
 
 	if (buttons[0] instanceof HTMLButtonElement) {
@@ -22,6 +32,5 @@ const delay = (ms: number) => new Promise((res) => setTimeout(res, ms))
 		}
 	}
 
-	await delay(REFRESH_RATE)
-	window.location.reload()
+	await awaitAndReload()
 })()

@@ -9,26 +9,25 @@
 // @icon         data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==
 // @grant        none
 // ==/UserScript==
-var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
-    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
-    return new (P || (P = Promise))(function (resolve, reject) {
-        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
-        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
-        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
-        step((generator = generator.apply(thisArg, _arguments || [])).next());
-    });
-};
 const REFRESH_RATE = 3500;
 const delay = (ms) => new Promise((res) => setTimeout(res, ms));
-(() => __awaiter(void 0, void 0, void 0, function* () {
+async function awaitAndReload() {
+    await delay(REFRESH_RATE);
+    window.location.reload();
+}
+;
+(async () => {
     var _a;
     const buttons = document.querySelectorAll('.btn-instant-free');
+    if (buttons.length === 0) {
+        await awaitAndReload();
+        return;
+    }
     const style = window.getComputedStyle(buttons[0]);
     if (buttons[0] instanceof HTMLButtonElement) {
         if ((style === null || style === void 0 ? void 0 : style.display) !== 'none') {
             (_a = buttons[0]) === null || _a === void 0 ? void 0 : _a.click();
         }
     }
-    yield delay(REFRESH_RATE);
-    window.location.reload();
-}))();
+    await awaitAndReload();
+})();
